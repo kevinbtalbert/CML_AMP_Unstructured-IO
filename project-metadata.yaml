@@ -1,0 +1,63 @@
+name: Unstructured IO for RAG
+description: Open-source adoption of Unstructured IO for ingesting and pre-processing images and text documents, such as PDFs, HTML, Word docs, and many more. Useful in collecting and processing data for RAG.
+author: Cloudera, Inc.
+specification_version: 1.0
+prototype_version: 1.0
+date: "2024-09-02"
+
+environment_variables:
+  RANDOM_VARIABLE_NAME:
+    default: "DEFAULT-VALUE"
+    description: "A description providing user clarifying information about the variable."
+    required: false
+
+runtimes:
+  - editor: JupyterLab ## Other acceptable values are determined by the runtimes available in your CML environment
+    kernel: Python 3.11 ## Same here, check your runtimes (custom runtimes can be added as well)
+    edition: Standard ## Particularly relevant if using GPUs, Nvidia GPU
+
+## Below are some sample tasks based on some of the most popular aspects of AMP creation.
+tasks:
+  ## SESSION related AMP snippet
+  - type: run_session
+    name: Install Dependencies
+    script: 0_session-install-dependencies/install_dependencies.py
+    short_summary: Install Requirements and Dependencies
+    kernel: python3
+    cpu: 2
+    memory: 8
+
+    ## SESSION related AMP snippet
+  - type: run_session
+    name: Setup Chroma DB
+    script: 1_session-setup-chromadb/setup-chroma.py
+    short_summary: Setup Chroma Vector DB
+    kernel: python3
+    cpu: 2
+    memory: 2
+
+  ## JOB related AMP snippet
+  - type: create_job
+    name: Load PDFs to Chroma with Unstructured 
+    entity_label: sample_job
+    script: 2_job-loading-with-unstructured/job.py
+    arguments: None
+    cpu: 2
+    memory: 4
+    short_summary: Load PDFs to Chroma with Unstructured IO
+    environment:
+      TASK_TYPE: CREATE/RUN_JOB
+
+  - type: run_job
+    entity_label: sample_job
+    short_summary: Short summary here about running the job you just created.
+
+  ## APPLICATION related AMP snippet
+  - type: start_application
+    name: Unstructured IO
+    short_summary: Create vectors with Unstructured IO via a graphical UI
+    long_summary: Create vectors with Unstructured IO via a graphical UI
+    subdomain: unstructured-io
+    script: 3_app/app.py
+    environment_variables:
+      TASK_TYPE: START_APPLICATION
