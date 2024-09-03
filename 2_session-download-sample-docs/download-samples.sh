@@ -10,10 +10,10 @@ mkdir -p "$TARGET_DIR"
 curl -L https://github.com/Unstructured-IO/unstructured-ingest/archive/44d5db1b19d0348a958ae707c39589d65ad1472a.zip -o main.zip
 
 # Unzip only the example-docs directory
-unzip -q main.zip "unstructured-ingest-main/example-docs/*" -d temp_unstructured_ingest
+unzip -q main.zip "unstructured-ingest-44d5db1b19d0348a958ae707c39589d65ad1472a/example-docs/*" -d temp_unstructured_ingest
 
 # Move the example-docs directory to the target location
-mv temp_unstructured_ingest/unstructured-ingest-main/example-docs/* "$TARGET_DIR"
+mv temp_unstructured_ingest/unstructured-ingest-44d5db1b19d0348a958ae707c39589d65ad1472a/example-docs/* "$TARGET_DIR"
 
 # Clean up the temporary files and directories
 rm -rf main.zip temp_unstructured_ingest
