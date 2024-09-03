@@ -27,6 +27,14 @@ tasks:
     cpu: 2
     memory: 2
 
+  - type: run_session
+    name: Download sample docs
+    script: 2_session-download-sample-docs/download-samples.py
+    short_summary: Download sample docs
+    kernel: python3
+    cpu: 2
+    memory: 4
+
   - type: create_job
     name: Load PDFs to Chroma with Unstructured 
     entity_label: sample_job
