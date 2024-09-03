@@ -2,3 +2,4 @@ unstructured[all-docs]
 streamlit
 chromadb
 sentence-transformers
+configparser

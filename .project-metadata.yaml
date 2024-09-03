@@ -36,19 +36,19 @@ tasks:
     memory: 4
 
   - type: create_job
-    name: Load PDFs to Chroma with Unstructured 
-    entity_label: sample_job
-    script: 2_job-loading-with-unstructured/job.py
+    name: Load Example Assets to Chroma with Unstructured IO
+    entity_label: load_examples
+    script: 4_job-loading-with-unstructured/load-examples-to-chromadb.py
     arguments: None
     cpu: 2
     memory: 4
-    short_summary: Load PDFs to Chroma with Unstructured IO
+    short_summary: Load examples to Chroma with Unstructured IO
     environment:
       TASK_TYPE: CREATE/RUN_JOB
 
   - type: run_job
-    entity_label: sample_job
-    short_summary: Short summary here about running the job you just created.
+    entity_label: load_examples
+    short_summary: Load Example Assets to Chroma with Unstructured IO
 
   - type: start_application
     name: Unstructured IO
@@ -58,3 +58,18 @@ tasks:
     script: 3_app/app.py
     environment_variables:
       TASK_TYPE: START_APPLICATION
+
+  # - type: create_job
+  #   name: Load PDFs to Chroma with Unstructured 
+  #   entity_label: sample_job
+  #   script: 2_job-loading-with-unstructured/job.py
+  #   arguments: None
+  #   cpu: 2
+  #   memory: 4
+  #   short_summary: Load PDFs to Chroma with Unstructured IO
+  #   environment:
+  #     TASK_TYPE: CREATE/RUN_JOB
+
+  # - type: run_job
+  #   entity_label: sample_job
+  #   short_summary: Short summary here about running the job you just created.
