@@ -3,17 +3,27 @@ FROM docker.repository.cloudera.com/cloudera/cdsw/ml-runtime-jupyterlab-python3.
 
 USER root
 
-# Upgrade packages in the base image
-RUN apt-get update && apt-get upgrade -y && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y \
+    libmagic-dev \
+    poppler-utils \
+    tesseract-ocr \
+    tesseract-ocr-eng \ 
+    libreoffice \
+    pandoc && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 
 # Add the packages you want to include in this runtime
 # RUN pip install
 
   # Set environment variables
   ENV ML_RUNTIME_EDITION="ML Runtime for Unstructured IO" \
-      ML_RUNTIME_SHORT_VERSION="1" \
-      ML_RUNTIME_MAINTENANCE_VERSION="01" \
-      ML_RUNTIME_FULL_VERSION="2024.08.01" \
+      ML_RUNTIME_SHORT_VERSION="2" \
+      ML_RUNTIME_MAINTENANCE_VERSION="02" \
+      ML_RUNTIME_FULL_VERSION="2024.08.02" \
       ML_RUNTIME_DESCRIPTION="ML Runtime to accompany Cohere Toolkit" \
       ML_RUNTIME_EDITOR="JupyterLab" \
       ML_RUNTIME_KERNEL="Python 3.11" \
