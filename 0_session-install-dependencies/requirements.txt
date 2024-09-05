@@ -3,3 +3,6 @@ streamlit
 chromadb
 sentence-transformers
 configparser
+pysqlite3-binary
+
+# unstructured-ingest

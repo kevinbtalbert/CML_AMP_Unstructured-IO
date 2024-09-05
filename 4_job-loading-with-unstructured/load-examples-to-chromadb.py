@@ -6,14 +6,15 @@ import configparser
 internal_config = {
     'pdfs_root_directory': '/home/cdsw/assets/example-docs/pdf/DA-619p.pdf',
     'htmls_root_directory': '/home/cdsw/assets/example-docs/htmls/',
-    'vector_db_path': '/home/cdsw/assets/examples-chromadb',
+    'vector_db_path': '/home/cdsw/assets/example-chromadb',
+    'collection_name': 'examples',
     'batch_size': 10
 }
 
 # List of other Python scripts to run
 scripts_to_run = [
-    'load-pdfs-to-chromadb.py',
-    'load-htmls-to-chromadb.py'
+    '4_job-loading-with-unstructured/load-pdfs-to-chromadb.py',
+    '4_job-loading-with-unstructured/load-htmls-to-chromadb.py'
 ]
 
 def run_script_with_config(script, config):
@@ -42,6 +43,7 @@ def load_config_from_file(file_path='config.ini'):
         'pdfs_root_directory': config['settings']['pdfs_root_directory'],
         'htmls_root_directory': config['settings']['htmls_root_directory'],
         'vector_db_path': config['settings']['vector_db_path'],
+        'collection_name': config['settings']['collection_name'],
         'batch_size': int(config['settings'].get('batch_size', 10))
     }
 
